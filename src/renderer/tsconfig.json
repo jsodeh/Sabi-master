@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "lib": [
+      "ES2020",
+      "DOM"
+    ],
+    "strict": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "../*"
+      ],
+      "@/types/*": [
+        "../types/*"
+      ],
+      "@/core/*": [
+        "../core/*"
+      ],
+      "@/ai/*": [
+        "../ai/*"
+      ],
+      "@/browser/*": [
+        "../browser/*"
+      ]
+    }
+  },
+  "include": [
+    "main.js",
+    "components/**/*.ts",
+    "components/**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.test.ts",
+    "**/*.test.js",
+    "components/__tests__"
+  ]
+}

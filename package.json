@@ -1,0 +1,158 @@
+{
+  "name": "sabi",
+  "version": "1.0.0",
+  "description": "Adaptive learning companion that controls and orchestrates the user's entire learning environment",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "cp src/renderer/*.html dist/renderer/ && cp src/renderer/*.css dist/renderer/ 2>/dev/null || true",
+    "start": "npm run build && electron .",
+    "dev": "concurrently \"tsc -w\" \"wait-on dist/main.js && electron .\"",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rimraf dist",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "publish": "npm run build && electron-builder --publish=always",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "keywords": [
+    "electron",
+    "learning",
+    "ai",
+    "automation",
+    "education"
+  ],
+  "author": "Sabi Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/sharp": "^0.32.0",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "concurrently": "^8.0.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^26.0.12",
+    "electron-updater": "^6.6.2",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^30.0.5",
+    "rimraf": "^5.0.0",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.0.0",
+    "wait-on": "^7.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.57.0",
+    "@google-cloud/speech": "^7.2.0",
+    "@huggingface/inference": "^4.5.3",
+    "@types/jest": "^29.0.0",
+    "@types/ws": "^8.5.0",
+    "axios": "^1.6.0",
+    "browser-use": "^0.0.1",
+    "electron-overlay-window": "^3.3.0",
+    "electron-store": "^10.1.0",
+    "electron-updater": "^6.1.0",
+    "groq-sdk": "^0.27.0",
+    "jimp": "^1.6.0",
+    "node-record-lpcm16": "^1.0.1",
+    "openai": "^4.20.0",
+    "playwright": "^1.40.0",
+    "puppeteer": "^22.0.0",
+    "sharp": "^0.34.3",
+    "speech-to-text": "^3.0.2",
+    "uuid": "^11.1.0",
+    "ws": "^8.14.0",
+    "zod": "^3.22.0"
+  },
+  "build": {
+    "appId": "com.sabi.learning-companion",
+    "productName": "Sabi Learning Companion",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "src/renderer/**/*",
+      "node_modules/**/*",
+      "!node_modules/.cache/**/*",
+      "!node_modules/electron/**/*",
+      "!node_modules/electron-builder/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "assets",
+        "to": "assets",
+        "filter": ["**/*"]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.education",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "assets/icon.icns",
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64", "ia32"]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "publisherName": "Sabi Team",
+      "verifyUpdateCodeSignature": false
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        },
+        {
+          "target": "deb",
+          "arch": ["x64"]
+        },
+        {
+          "target": "rpm",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "category": "Education"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Sabi Learning Companion"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "sabi-team",
+      "repo": "sabi-learning-companion",
+      "private": false
+    }
+  }
+}

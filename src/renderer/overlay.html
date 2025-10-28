@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">
+    <title>Sabi Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: transparent;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .overlay-content {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .overlay-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .overlay-message {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-content">
+        <div class="overlay-title">Learning Guidance</div>
+        <div class="overlay-message">This is a placeholder for contextual learning overlays.</div>
+    </div>
+
+    <script>
+        // Placeholder for overlay functionality
+        console.log('Overlay window loaded');
+    </script>
+</body>
+</html>
