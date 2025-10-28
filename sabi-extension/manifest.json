@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Sabi",
+  "version": "0.1.0",
+  "description": "Your adaptive learning companion.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
